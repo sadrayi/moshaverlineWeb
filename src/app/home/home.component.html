@@ -1,0 +1,56 @@
+
+<section class="banner padding-tb-200px sm-ptb-80px background-overlay"
+         style="background-image: url('assets/img/banner_1.jpg');">
+  <div class="container z-index-2 position-relative">
+    <div class="title">
+      <h1 class="text-title-large text-main-color font-weight-300 margin-bottom-15px">مشاورلاین</h1>
+      <h4 class="font-weight-300 text-main-color text-up-small">سامانه مشاوره آنلاین</h4>
+    </div>
+    <div class="row margin-tb-60px">
+      <div class="col-lg-8" >
+        <div class="listing-search" dir="rtl">
+
+          <form class="row no-gutters">
+            <div class="col-md-5">
+              <div class="keywords" style="height: 100%;margin: 5px">
+                <input [(ngModel)]="doctorName" name="doctorname" style="height: 75%" class="listing-form first" type="text" placeholder="نام مشاور" value="">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="margin-5px">
+                <ng-select  [items]="categoriesData"
+                            bindLabel="name"
+                            name="category"
+                            [(ngModel)]="categorieSelected"
+                            placeholder="گروه مشاوره"
+                            [loading]="categoriesLoading"
+                            class="" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">گروه مشاوره</ng-select>
+
+              </div>
+            </div>
+            <div class="col-md-3">
+              <input (click)="search()" type="submit" style="height: 70%;margin: 5px;border-bottom-left-radius: 10px;border-top-left-radius: 10px " class="listing-bottom background-second-color box-shadow" value="جستجو" href="#"/>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="row">
+          <div class="col-md-5 col-6 sm-mb-30px wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+            <a href="#!/add_appointment" class="d-block border-radius-15 hvr-float hvr-sh2">
+              <div class="background-main-color text-white border-radius-15 padding-20px text-center opacity-hover-7">
+                <div class="icon margin-bottom-15px opacity-7">
+                  <img src="assets/img/icon/categorie-1.png" alt="">
+                </div>
+                انتخاب مشاور توسط پشتیبان
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

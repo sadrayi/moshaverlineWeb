@@ -1,0 +1,98 @@
+<div id="page-title" style="padding-top: 60px " class=" gradient-white">
+  <div class="container">
+    <ol class="breadcrumb opacity-5">
+    </ol>
+    <h1 style="text-align: right" class="font-weight-300">لیست مشاورین</h1>
+  </div>
+</div>
+
+
+<div class="margin-tb-30px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+
+        <div class="row" style="text-align: right" dir="rtl">
+
+          <!-- Doctor -->
+          <div *ngFor="let doctor of doctors" class="col-lg-4 col-md-6 hvr-bob margin-bottom-45px">
+            <div  class="background-white box-shadow">
+              <div class="thum" #image >
+                <a href="./doctors/{{doctor.id}}"><img [ngStyle]="{'height.px': image.offsetWidth.toString()}"  src="http://admin.moshaverline.com/{{doctor.avatar}}"
+                                                       onerror="this.onerror=null;this.src='assets/img/unknown.png';"
+                                                        alt=""></a>
+              </div>
+              <div class="padding-30px">
+                <!--
+                                <span class="text-grey-2">مشاور خانواده</span>
+                -->
+                <h5 class="margin-tb-15px"><a class="text-dark" href="#">{{doctor.name}}</a></h5>
+                <div class="rating clearfix">
+                  <ul class="float-right">
+                    <li [ngClass]="{active:doctor.star>=1}"></li>
+                    <li [ngClass]="{active:doctor.star>=2}"></li>
+                    <li [ngClass]="{active:doctor.star>=3}"></li>
+                    <li [ngClass]="{active:doctor.star>=4}"></li>
+                    <li [ngClass]="{active:doctor.star>=5}"></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- // Doctor -->
+
+        </div>
+        <div *ngIf="lastPage!=1">
+          <ul style="float: right!important; direction: rtl" class="pagination pagination-md ">
+            <li *ngIf="currentPage!=1" class="page-item enabled background-main-color"><a class="page-link rounded-0"
+                                                                                           (click)="nextpage(currentPage-1)"
+                                                                                           tabindex="-1">قبلی</a>
+            </li>
+            <div *ngFor="let page of pager">
+              <li class="page-item "><a (click)="nextpage(page)" class="page-link"
+                                        [ngClass]="{enabled:currentPage.toString()!=page}">{{page}}</a></li>
+            </div>
+            <li *ngIf="currentPage!=lastPage" class="page-item enabled"><a class="page-link rounded-0" (click)="nextpage(currentPage+1)">بعدی</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4">
+
+        <div class="background-white border-radius-10 margin-bottom-45px">
+          <div class="padding-25px" style="direction: rtl">
+            <h3 class="margin-lr-20px" style="float: right!important;"><i
+              class="fas fa-search margin-right-10px text-main-color"></i> جستجو</h3>
+            <!-- Listing Search -->
+            <div class="listing-search">
+              <form dir="rtl">
+                <div class="keywords margin-bottom-20px">
+                  <input name="doctorName" [(ngModel)]="doctorName" class="listing-form first border-radius-10"
+                         type="text"
+                         placeholder="نام مشاور ..." value="">
+                </div>
+                <div class=" dropdown margin-bottom-20px">
+                  <ng-select [items]="categoriesData"
+                             bindLabel="name"
+                             name="category"
+                             [(ngModel)]="categorieSelected"
+                             placeholder="گروه مشاوره"
+                             [loading]="categoriesLoading"
+                             class="" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                             aria-expanded="false">گروه مشاوره
+                  </ng-select>
+
+                </div>
+                <a (click)="filter()" style="color: white;cursor: pointer"
+                   class="listing-bottom background-main-color box-shadow border-radius-10">اعمال فیلتر</a>
+              </form>
+            </div>
+            <!-- // Listing Search -->
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
