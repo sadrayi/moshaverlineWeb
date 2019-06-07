@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {NgSelectConfig} from '@ng-select/ng-select';
 import {DataService} from '../shared/data.service';
-import {CategoriesData, CategoriesModel} from '../models/CategoriesModel';
+import {CategoriesData, CategoriesModel} from '../models/responses/CategoriesModel';
 import {Router} from '@angular/router';
 import {LocalStorageService} from '../services/local-storage.service';
+import {RequestAppointmentComponent} from '../request-appointment/request-appointment.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 interface Categories {
   id: number;
@@ -22,14 +24,18 @@ export class HomeComponent implements OnInit {
   categoriesLoading = false;
   doctorName: string = '';
 
-  constructor(private localStorageService: LocalStorageService, private dataService: DataService, private config: NgSelectConfig, private router: Router) {
+  constructor(private modalService: NgbModal,private localStorageService: LocalStorageService, private dataService: DataService, private config: NgSelectConfig, private router: Router) {
     this.config.notFoundText = 'نتیجه ای یافت نشد.';
   }
 
   ngOnInit() {
     this.loadCategories();
   }
-
+  poshtiban(){
+    const modal = this.modalService.open(RequestAppointmentComponent);
+    modal.componentInstance.doctorName="انتخاب توسط پشتیبان";
+    modal.componentInstance.doctorId=-1;
+  }
   private search() {
     if (this.categorieSelected == null)
       this.localStorageService.saveCategory("*");

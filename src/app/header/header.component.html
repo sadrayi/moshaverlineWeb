@@ -16,9 +16,10 @@
       <div class="left-widgets mini-widgets"><span
         class="mini-contacts clock show-on-desktop in-top-bar-left in-menu-second-switch first"><i
         class=" fas fa-asterisk"></i>شعارما، مشاوره </span>
-        <div class="mini-login show-on-desktop near-logo-first-switch in-menu-second-switch last"><a
-          href="#" onclick="login" data-toggle="modal" data-target="#myModal" class="submit"><i
-          class="the7-mw-icon-login-bold"></i>ورود</a></div>
+        <div class="mini-login show-on-desktop near-logo-first-switch in-menu-second-switch last">
+          <a style="cursor: pointer"
+          (click)="onHeaderClick()" class="submit"><i
+          class="the7-mw-icon-login-bold"></i>{{name}}</a></div>
       </div>
       <div class="right-widgets mini-widgets">
 
@@ -79,9 +80,9 @@
             class="fa fa-thumbs-up"></i><span class="menu-item-text"><span
             class="menu-text">راهنما</span></span></a></li>
           <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1973"><a
-            href="http://www.moshaverline.com/%d9%81%d8%b1%d9%88%d8%b4%da%af%d8%a7%d9%87-%d8%b3%d9%88%d9%86/"
+            href="#!/home"
             data-level="1"><i class="fas fa-shopping-cart"></i><span class="menu-item-text"><span
-            class="menu-text">فروشگاه</span></span></a></li>
+            class="menu-text">رزرواسیون</span></span></a></li>
         </ul>
         <div class="mini-widgets">
           <div class="mini-search show-on-desktop near-logo-first-switch in-menu-second-switch popup-search custom-icon first last">

@@ -32081,7 +32081,7 @@ form.dark-form ::-ms-input-placeholder {
   width: 38px;
   height: 38px;
   opacity: 0.3;
-  background-image: url(../assets/img/popup_close.png);
+  background-image: url(./assets/img/popup_close.png);
   background-size: 38px 38px;
   -webkit-background-size: 38px 38px;
   -moz-background-size: 38px 38px;

@@ -2,6 +2,8 @@ import {Inject, Injectable} from '@angular/core';
 import {LOCAL_STORAGE, SESSION_STORAGE, StorageService} from 'ngx-webstorage-service';
 
 const Category_Key = 'CategorySelected';
+const UserId_Key = 'UserId';
+const UserToken_Key = 'UserToken';
 const searchedDoctor_Key = 'searchedDoctor';
 
 // key that is used to access the data in local storageconst STORAGE_KEY = 'local_todolist';
@@ -19,10 +21,27 @@ export class LocalStorageService {
   }
 
   public getdoctorSearchName(): string {
-    return this.storage.get(searchedDoctor_Key)
+    return this.storage.get(searchedDoctor_Key);
   }
+
+  public saveUserId(userId: number) {
+    this.storage.set(UserId_Key, userId);
+  }
+
+  public getUserId(): number {
+    return this.storage.get(UserId_Key);
+  }
+
+  public saveUserToken(userToken: string) {
+    this.storage.set(UserToken_Key, userToken);
+  }
+
+  public getUserToken(): string {
+    return this.storage.get(UserToken_Key);
+  }
+
   public getCategorySelectedId(): string {
-    return this.storage.get(Category_Key)
+    return this.storage.get(Category_Key);
   }
 
   public saveSearchedDoctorName(doctorName: string): void {

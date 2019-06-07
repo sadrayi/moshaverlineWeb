@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../shared/data.service';
 import {LocalStorageService} from '../services/local-storage.service';
-import {doctorsData, DoctorsModel} from '../models/doctors-model';
-import {CategoriesData} from '../models/CategoriesModel';
+import {doctorsData, DoctorsModel} from '../models/responses/doctors-model';
+import {CategoriesData} from '../models/responses/CategoriesModel';
 
 @Component({
   selector: 'app-list',

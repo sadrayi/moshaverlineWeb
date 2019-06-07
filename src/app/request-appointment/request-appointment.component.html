@@ -1,3 +1,49 @@
-<p>
-  request-appointment works!
-</p>
+<div class="container">
+
+<!-- Page Title -->
+<div class="modal-header" style="text-align: center">
+  <h4 class="modal-title" style="text-align: center;width: 100% " id="modal-basic-title">رزرو نوبت مشاوره</h4>
+
+</div>
+<!-- // Page Title -->
+  <div dir="rtl" style="text-align: right" class="form-output modal-body">
+
+    <form>
+      <div class="form-group margin-bottom-20px">
+        <label> <i class="far fa-list-alt margin-right-10px"></i> نام مشاور</label>
+        <label for="ListingTitle"></label><input name="doctorName" type="text" class="form-control form-control-sm" readonly id="ListingTitle"
+                                                 value="{{doctorName}}">
+      </div>
+      <div class="form-group margin-bottom-20px">
+        <div class="row">
+          <div class="col-md-12">
+            <ng-select  [items]="categoriesData"
+                        bindLabel="name"
+                        name="category"
+                        [(ngModel)]="categorieSelected"
+                        placeholder="گروه مشاوره"
+                        [loading]="categoriesLoading"
+                        class="" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">گروه مشاوره</ng-select>
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 margin-bottom-20px">
+          <label><i class="fas fa-calendar-alt margin-right-10px"></i> تاریخ جلسه</label>
+          <input type="text" class="form-control form-control-sm" placeholder="002229456987">
+        </div>
+        <div class="col-md-6 margin-bottom-20px">
+          <label> <i class="far fa-clock margin-right-10px"></i> ساعت شروع جلسه</label>
+          <input type="text" class="form-control form-control-sm" placeholder="info@yourname.com">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer">
+  <button href="#" type="submit"
+          class="btn btn-lg border-2  btn-primary btn-block border-radius-15 padding-15px box-shadow">ثبت رزرو
+  </button>
+
+</div>

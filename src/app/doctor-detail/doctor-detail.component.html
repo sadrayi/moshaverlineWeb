@@ -2,7 +2,7 @@
 <div id="page-title" style="padding-top: 60px;text-align: right" class=" gradient-white">
   <div class="container" dir="rtl">
 
-    <h1 class="font-weight-300">مشاور {{doctorDetail.name}}</h1>
+    <h3 class="font-weight-300">مشاور {{doctorDetail.name}}</h3>
   </div>
 </div>
 
@@ -13,7 +13,7 @@
       <div class="col-lg-8" style="text-align: center">
 
         <div class="margin-bottom-30px box-shadow">
-          <img style="max-height: 500px" onerror="this.onerror=null;this.src='assets/img/unknown.png';" src="http://admin.moshaverline.com/{{doctorDetail.avatar}}" alt="">
+          <img style="max-height: 500px" onerror="this.onerror=null;this.src='./assets/img/unknown.png';" src="http://admin.moshaverline.com/{{doctorDetail.avatar}}" alt="">
           <div class="padding-30px background-white">
             <div class="row" style="text-align: center">
               <div class="col-lg-3"></div>
@@ -50,7 +50,7 @@
 
             <ul *ngFor="let nazar of Nazarsanjies" class="commentlist padding-0px margin-0px list-unstyled text-grey-3">
               <li class="border-bottom-1 border-grey-1 margin-bottom-20px">
-                <img style="height: 80px" src="http://admin.moshaverline.com/{{nazar.avatar}}" onerror="this.onerror=null;this.src='assets/img/unknown.png';" class="float-right margin-right-20px border-radius-60 margin-bottom-20px" alt="">
+                <img style="height: 80px" src="http://admin.moshaverline.com/{{nazar.avatar}}" onerror="this.onerror=null;this.src='./assets/img/unknown.png';" class="float-right margin-right-20px border-radius-60 margin-bottom-20px" alt="">
                 <div class="float-right-85px">
                   <span class="text-extra-small margin-right-20px">تاریخ :  <a href="#" class="text-main-color">{{nazar.date}}</a></span>
                   <a class="d-inline-block text-dark text-medium " href="#">{{nazar.name}} </a>
@@ -77,14 +77,15 @@
           <h3 class="padding-lr-30px padding-top-20px" style="color: white"><i class="far fa-clock margin-right-10px "></i> تقویم کاری</h3>
           <div class="padding-bottom-30px">
             <ul class="padding-0px margin-0px">
-              <form action="#!/add_appointment">
-                <li class="padding-lr-30px padding-tb-10px ba-2">شنبه <span class="float-left">15:00  - 10:00</span></li>
-                <li class="padding-lr-30px padding-tb-10px ">یک شنبه <span class="float-left">15:00  - 10:00</span></li>
-                <li class="padding-lr-30px padding-tb-10px ba-2">دو شنبه <span class="float-left">15:00  - 10:00</span></li>
-                <li class="padding-lr-30px padding-tb-10px ">سه شنبه <span class="float-left">15:00  - 10:00</span></li>
-                <li class="padding-lr-30px padding-tb-10px ba-2">چهارشنبه  <span class="float-left">15:00  - 10:00</span></li>
-                <li class="padding-lr-30px padding-tb-10px ">پنج شنبه  <span class="float-left">10:00 - 15:00 </span></li>
-                <button type="submit" style="margin-right:5%;margin-top: 5%;width: 90%;color: white;" class="padding-lr-30px padding-tb-10px  background-blue box-shadow border-radius-10" href="#">رزرو</button>
+              <form action="#!/add_appointment" style="direction: ltr">
+                <li class="padding-lr-30px padding-tb-10px ba-2">{{DateToJalaliDay(0)}} <span class="float-left">{{DateToJalaliHours(0)}}</span></li>
+                <li class="padding-lr-30px padding-tb-10px ">{{DateToJalaliDay(1)}} <span class="float-left">{{DateToJalaliHours(1)}}</span></li>
+                <li class="padding-lr-30px padding-tb-10px ba-2">{{DateToJalaliDay(2)}} <span class="float-left">{{DateToJalaliHours(2)}}</span></li>
+                <li class="padding-lr-30px padding-tb-10px ">{{DateToJalaliDay(3)}} <span class="float-left">{{DateToJalaliHours(3)}}</span></li>
+                <li class="padding-lr-30px padding-tb-10px ba-2">{{DateToJalaliDay(4)}} <span class="float-left">{{DateToJalaliHours(4)}}</span></li>
+                <li class="padding-lr-30px padding-tb-10px ">{{DateToJalaliDay(5)}} <span class="float-left">{{DateToJalaliHours(5)}}</span></li>
+                <li class="padding-lr-30px padding-tb-10px ba-2">{{DateToJalaliDay(6)}} <span class="float-left">{{DateToJalaliHours(6)}}</span></li>
+                <button (click)="open()" style="margin-right:5%;margin-top: 5%;width: 90%;color: white;" class="padding-lr-30px padding-tb-10px  background-blue box-shadow border-radius-10">رزرو</button>
               </form>
             </ul>
           </div>

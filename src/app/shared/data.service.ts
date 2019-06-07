@@ -1,11 +1,15 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {delay, map} from 'rxjs/operators';
-import {HttpClient} from '@angular/common/http';
-import {CategoriesModel} from '../models/CategoriesModel';
-import {doctorsData, DoctorsModel} from '../models/doctors-model';
-import {DoctorsCountModel} from '../models/doctors-count-model';
-import {DoctorNazarsanji} from '../models/doctor-nazarsanji';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {CategoriesModel} from '../models/responses/CategoriesModel';
+import {doctorsData, DoctorsModel} from '../models/responses/doctors-model';
+import {DoctorsCountModel} from '../models/responses/doctors-count-model';
+import {DoctorNazarsanji} from '../models/responses/doctor-nazarsanji';
+import {DoctorCalendar} from '../models/responses/doctor-calendar';
+import {GeneralResponse} from '../models/responses/general-response';
+import {VerifyCode} from '../models/send/verify-code';
+import {LocalStorageService} from '../services/local-storage.service';
 
 const ApiUrl = 'http://admin.moshaverline.com/webservice/';
 
@@ -14,8 +18,17 @@ const ApiUrl = 'http://admin.moshaverline.com/webservice/';
   providedIn: 'root'
 })
 export class DataService {
-  constructor(private http: HttpClient) {
+  constructor(private localstorage: LocalStorageService, private http: HttpClient) {
   }
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'id': this.localstorage.getUserId().toString(),
+      'type': 'user',
+      'token': this.localstorage.getUserToken()
+    })
+  };
 
   getCategories(): Observable<CategoriesModel> {
     return this.http.get<CategoriesModel>(ApiUrl + 'categories');
@@ -29,8 +42,32 @@ export class DataService {
     return this.http.get<doctorsData>(ApiUrl + 'doctor?doctorId=' + doctorId);
   }
 
+  getDoctorCalendar(doctorId: number): Observable<DoctorCalendar> {
+    return this.http.get<DoctorCalendar>(ApiUrl + 'webcalendar?doctorId=' + doctorId);
+  }
+
+  getVeriyCode(phone: string): Observable<GeneralResponse> {
+    return this.http.get<GeneralResponse>(ApiUrl + 'verifycode?type=user&&phone=' + phone);
+  }
+
+  getProfileDetail(): Observable<GeneralResponse> {
+    return this.http.get<GeneralResponse>(ApiUrl + 'profile', this.httpOptions);
+  }
+
+  updateProfileName(name: string): Observable<GeneralResponse> {
+    this.httpOptions.headers.set('id', this.localstorage.getUserId().toString());
+    this.httpOptions.headers.set('token', this.localstorage.getUserToken());
+    console.log(this.httpOptions);
+    console.log("token: " +  this.localstorage.getUserToken());
+    return this.http.post<GeneralResponse>(ApiUrl + 'profile', {name: name}, this.httpOptions);
+  }
+
+  sendVerifyCode(data: VerifyCode): Observable<GeneralResponse> {
+    return this.http.post<GeneralResponse>(ApiUrl + 'verifycode', data);
+  }
+
   getDoctorNazarsanji(doctorId: number, page: number): Observable<DoctorNazarsanji> {
-    return this.http.get<DoctorNazarsanji>(ApiUrl + 'nazarsanji?doctorId=' + doctorId+"&page="+page);
+    return this.http.get<DoctorNazarsanji>(ApiUrl + 'nazarsanji?doctorId=' + doctorId + '&page=' + page);
   }
 
   searchDoctorsCount(doctorName: string, categoryId: string): Observable<DoctorsCountModel> {

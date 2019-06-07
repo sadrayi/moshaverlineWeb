@@ -6,10 +6,13 @@ import {ListComponent} from './list/list.component';
 import {DoctorDetailComponent} from './doctor-detail/doctor-detail.component';
 import {RequestAppointmentComponent} from './request-appointment/request-appointment.component';
 import {SearchComponent} from './search/search.component';
+import {ProfileComponent} from './profile/profile.component';
 
 const routes: Routes = [
   {path: 'home' , component: HomeComponent},
   {path: 'list' , component: ListComponent},
+  {path: 'profile' , component: ProfileComponent},
+  {path: 'request' , component: RequestAppointmentComponent},
   {path: 'doctors/:id' , component: DoctorDetailComponent},
   {path: 'request' , component: RequestAppointmentComponent},
   {path: 'search' , component: SearchComponent},

@@ -1,0 +1,26 @@
+<div class="container">
+  <!--======= log_in_page =======-->
+  <div id="log-in" class="site-form log-in-form" style="direction: rtl">
+    <div class="modal-header" style="text-align: center">
+      <h4 class="modal-title" style="text-align: center;width: 100% " id="modal-basic-title">ورود به حساب کاربری</h4>
+
+    </div>
+    <div class="form-output modal-body">
+      <h5 style="width: 100%;text-align: center">{{headerText}}</h5>
+      <form>
+        <div class="form-group label-floating float-right">
+          <label class="control-label">{{inputText}}</label>
+        </div>
+        <input [disabled]="!inputState" name="input" [(ngModel)]="input" class="form-control" placeholder="" type="tel">
+      </form>
+    </div>
+    <div class="modal-footer">
+      <a (click)="login()" style="background-color: #59b899;color: white"
+         class=" btn btn-md btn-primary full-width">تایید</a>
+
+    </div>
+  </div>
+  <!--======= // log_in_page =======-->
+
+</div>
+
