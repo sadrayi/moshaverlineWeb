@@ -29,7 +29,7 @@ export class LocalStorageService {
   }
 
   public getUserId(): number {
-    return this.storage.get(UserId_Key);
+    return this.storage.get(UserId_Key) ? this.storage.get(UserId_Key) : 0;
   }
 
   public saveUserToken(userToken: string) {
@@ -37,7 +37,7 @@ export class LocalStorageService {
   }
 
   public getUserToken(): string {
-    return this.storage.get(UserToken_Key);
+    return this.storage.get(UserToken_Key) ? this.storage.get(UserToken_Key) : '';
   }
 
   public getCategorySelectedId(): string {

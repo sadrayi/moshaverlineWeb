@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
-import {delay, map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {CategoriesModel} from '../models/responses/CategoriesModel';
 import {doctorsData, DoctorsModel} from '../models/responses/doctors-model';
@@ -10,6 +9,7 @@ import {DoctorCalendar} from '../models/responses/doctor-calendar';
 import {GeneralResponse} from '../models/responses/general-response';
 import {VerifyCode} from '../models/send/verify-code';
 import {LocalStorageService} from '../services/local-storage.service';
+import {AppointmentRequest} from '../models/send/appointment-request';
 
 const ApiUrl = 'http://admin.moshaverline.com/webservice/';
 
@@ -18,9 +18,6 @@ const ApiUrl = 'http://admin.moshaverline.com/webservice/';
   providedIn: 'root'
 })
 export class DataService {
-  constructor(private localstorage: LocalStorageService, private http: HttpClient) {
-  }
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -29,6 +26,9 @@ export class DataService {
       'token': this.localstorage.getUserToken()
     })
   };
+
+  constructor(private localstorage: LocalStorageService, private http: HttpClient) {
+  }
 
   getCategories(): Observable<CategoriesModel> {
     return this.http.get<CategoriesModel>(ApiUrl + 'categories');
@@ -54,12 +54,16 @@ export class DataService {
     return this.http.get<GeneralResponse>(ApiUrl + 'profile', this.httpOptions);
   }
 
-  updateProfileName(name: string): Observable<GeneralResponse> {
+  updateProfileName(name: string, codemeli: string, pic: string): Observable<GeneralResponse> {
     this.httpOptions.headers.set('id', this.localstorage.getUserId().toString());
     this.httpOptions.headers.set('token', this.localstorage.getUserToken());
     console.log(this.httpOptions);
-    console.log("token: " +  this.localstorage.getUserToken());
-    return this.http.post<GeneralResponse>(ApiUrl + 'profile', {name: name}, this.httpOptions);
+    console.log('token: ' + this.localstorage.getUserToken());
+    return this.http.post<GeneralResponse>(ApiUrl + 'profileWeb', {name: name, codemeli: codemeli, pic: pic}, this.httpOptions);
+  }
+
+  sendAppointmentRequest(data: AppointmentRequest): Observable<GeneralResponse> {
+    return this.http.post<GeneralResponse>(ApiUrl + 'appointments', data, this.httpOptions);
   }
 
   sendVerifyCode(data: VerifyCode): Observable<GeneralResponse> {

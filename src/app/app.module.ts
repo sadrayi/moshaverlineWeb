@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {NgSelectModule} from '@ng-select/ng-select';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HomeComponent} from './home/home.component';
@@ -17,7 +17,9 @@ import {LoginComponent} from './login/login.component';
 import {NbCardModule, NbDialogModule, NbThemeModule} from '@nebular/theme';
 import {config} from 'rxjs';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { ProfileComponent } from './profile/profile.component';
+import {ProfileComponent} from './profile/profile.component';
+import {DpDatePickerModule} from 'ng2-jalali-date-picker';
+import {UploadAvatarComponent} from './upload-avatar/upload-avatar.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +32,14 @@ import { ProfileComponent } from './profile/profile.component';
     FooterComponent,
     SearchComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    UploadAvatarComponent
   ],
   imports: [
     HttpClientModule,
+    ReactiveFormsModule,
     BrowserModule,
+    DpDatePickerModule,
     NgSelectModule,
     FormsModule,
     AppRoutingModule,
@@ -42,7 +47,7 @@ import { ProfileComponent } from './profile/profile.component';
   ],
   providers: [LocalStorageService],
   bootstrap: [AppComponent],
-  entryComponents: [LoginComponent]
+  entryComponents: [LoginComponent, UploadAvatarComponent]
 })
 export class AppModule {
 }

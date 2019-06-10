@@ -10,8 +10,8 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  name: string = 'ورود';
-  loggedIn: boolean = false;
+  name = 'ورود';
+  loggedIn = false;
 
   constructor(private modalService: NgbModal, private dataservice: DataService, private router: Router) {
   }
@@ -19,9 +19,14 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.dataservice.getProfileDetail().subscribe((x) => {
       console.log(x);
-      if (x.code == 200) {
+      if (x.code === 200) {
         this.loggedIn = true;
-        this.name = x.data.name;
+        if (x.data.name !== '') {
+          this.name = x.data.name;
+        } else {
+          this.modalService.open(LoginComponent);
+        }
+
       }
     });
   }

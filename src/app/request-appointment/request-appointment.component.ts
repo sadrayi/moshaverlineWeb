@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CategoriesData} from '../models/responses/CategoriesModel';
 import {DataService} from '../shared/data.service';
+import {AppointmentRequest} from '../models/send/appointment-request';
+import * as moment from 'jalali-moment';
 
 @Component({
   selector: 'app-request-appointment',
@@ -8,7 +10,8 @@ import {DataService} from '../shared/data.service';
   styleUrls: ['./request-appointment.component.css']
 })
 export class RequestAppointmentComponent implements OnInit {
-  categoriesData: CategoriesData[] = [];
+  @Input() categoriesData: CategoriesData[] = [];
+  dateObject: any;
   categorieSelected: CategoriesData = null;
   categoriesLoading = false;
   @Input() doctorName: string;
@@ -18,14 +21,16 @@ export class RequestAppointmentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadCategories();
+    this.dateObject = moment(moment().format('jYYYY,jMM,jDD'), 'jYYYY,jMM,jDD');
   }
 
-  private loadCategories() {
-    this.categoriesLoading = true;
-    this.dataService.getCategories().subscribe(x => {
-      this.categoriesData = x.data;
-      this.categoriesLoading = false;
+  saveRequest() {
+    const appointment = new AppointmentRequest(this.doctorId.toString(), this.categorieSelected._id.toString(), this.dateObject.unix(), '');
+    console.log(this.dateObject.unix());
+    console.log(this.categorieSelected);
+    this.dataService.sendAppointmentRequest(appointment).subscribe((x) => {
+      console.log(x);
     });
   }
+
 }

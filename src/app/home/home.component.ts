@@ -22,27 +22,32 @@ export class HomeComponent implements OnInit {
   categoriesData: CategoriesData[] = [];
   categorieSelected: CategoriesData = null;
   categoriesLoading = false;
-  doctorName: string = '';
+  doctorName = '';
 
-  constructor(private modalService: NgbModal,private localStorageService: LocalStorageService, private dataService: DataService, private config: NgSelectConfig, private router: Router) {
+  constructor(private modalService: NgbModal, private localStorageService: LocalStorageService, private dataService: DataService,
+              private config: NgSelectConfig, private router: Router) {
     this.config.notFoundText = 'نتیجه ای یافت نشد.';
   }
 
   ngOnInit() {
     this.loadCategories();
   }
-  poshtiban(){
+
+  poshtiban() {
     const modal = this.modalService.open(RequestAppointmentComponent);
-    modal.componentInstance.doctorName="انتخاب توسط پشتیبان";
-    modal.componentInstance.doctorId=-1;
+    modal.componentInstance.doctorName = 'انتخاب توسط پشتیبان';
+    modal.componentInstance.doctorId = -1;
+    modal.componentInstance.categoriesData = this.categoriesData;
   }
+
   private search() {
-    if (this.categorieSelected == null)
-      this.localStorageService.saveCategory("*");
-    else
+    if (this.categorieSelected == null) {
+      this.localStorageService.saveCategory('*');
+    } else {
       this.localStorageService.saveCategory(this.categorieSelected._id.toString());
+    }
     this.localStorageService.saveSearchedDoctorName(this.doctorName);
-    this.router.navigate(['list'])
+    this.router.navigate(['list']);
   }
 
   private loadCategories() {

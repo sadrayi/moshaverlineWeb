@@ -10,24 +10,25 @@
 <div class="row margin-tb-45px full-width" dir="rtl" style="text-align: right">
   <div class="col-md-4">
     <div class="padding-15px background-white">
-      <a class="d-block margin-bottom-10px"><img  onerror="this.onerror=null;this.src='./assets/img/unknown.png';" src="http://admin.moshaverline.com/{{avatar}}" alt=""></a>
-      <a class="btn btn-sm  text-white background-main-color btn-block">بارگزاری تصویر</a>
+      <a class="d-block margin-bottom-10px"><img onerror="this.onerror=null;this.src='./assets/img/unknown.png';"
+                                                 src="http://admin.moshaverline.com/{{avatar}}" alt=""></a>
+      <a (click)="updateProfilePic()" class="btn btn-sm  text-white background-main-color btn-block">بارگزاری تصویر</a>
     </div>
   </div>
   <div class="col-md-8">
     <div class="row">
       <div class="col-md-6 margin-bottom-20px">
         <label> <i class="far fa-user margin-right-10px"></i> نام کاربری</label>
-          <input type="text" placeholder="نام کاربری" class="form-control form-control-sm" value="{{name}}">
+        <input type="text" placeholder="نام کاربری" class="form-control form-control-sm" [(ngModel)]="name" name="name">
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 margin-bottom-20px">
         <label> <i class="fab fa-youtube margin-right-10px"></i> کد ملی</label>
-        <input type="text" class="form-control form-control-sm" value="{{codemeli}}" placeholder="کد ملی">
+        <input type="text" class="form-control form-control-sm" [(ngModel)]="codemeli" name="codemeli" placeholder="کد ملی">
       </div>
     </div>
-    <a  class="btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">بروزرسانی</a>
+    <a (click)="updateProfile()" class="btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">بروزرسانی</a>
 
   </div>
 </div>
