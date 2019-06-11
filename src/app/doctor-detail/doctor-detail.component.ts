@@ -9,6 +9,7 @@ import * as moment from 'moment-jalaali';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {LoginComponent} from '../login/login.component';
 import {RequestAppointmentComponent} from '../request-appointment/request-appointment.component';
+import {ProfileService} from '../services/profile-service';
 
 interface calendar {
   date: Date;
@@ -29,17 +30,18 @@ export class DoctorDetailComponent implements OnInit {
   Nazarsanjies: nazarsanjiData[];
   calendarData: calendar[] = [];
 
-  constructor(private modalService: NgbModal, private route: ActivatedRoute, private dataService: DataService, private localStorage: LocalStorageService) {
+  constructor(private modalService: NgbModal, private route: ActivatedRoute, private dataService: DataService,
+              private localStorage: LocalStorageService) {
   }
 
   ngOnInit() {
-    this.dataService.getProfileDetail().subscribe((x) => {
-      if (x.code == 200 && x.data.name !== '') {
+    ProfileService.profileFunction = () => {
+      if (ProfileService.profileData.code === 200 && ProfileService.profileData.data.name !== '') {
         this.loggedIn = true;
       }
-    });
+    };
     this.route.params.subscribe(params => {
-      this.doctorId = +params['id'];
+      this.doctorId = + params.id;
     });
     console.log(this.doctorId);
     this.loadDoctorDetail();
@@ -52,8 +54,8 @@ export class DoctorDetailComponent implements OnInit {
       this.modalService.open(LoginComponent);
     else {
       const modal = this.modalService.open(RequestAppointmentComponent);
-      modal.componentInstance.doctorName=this.doctorDetail.name;
-      modal.componentInstance.doctorId=this.doctorDetail._id;
+      modal.componentInstance.doctorName = this.doctorDetail.name;
+      modal.componentInstance.doctorId = this.doctorDetail._id;
     }
 
   }

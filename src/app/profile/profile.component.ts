@@ -2,9 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {DataService} from '../shared/data.service';
 import {Router} from '@angular/router';
-import {RequestAppointmentComponent} from '../request-appointment/request-appointment.component';
 import {UploadAvatarComponent} from '../upload-avatar/upload-avatar.component';
-import {FormBuilder, Validators} from '@angular/forms';
+import {ProfileService} from '../services/profile-service';
 
 @Component({
   selector: 'app-profile',
@@ -13,12 +12,12 @@ import {FormBuilder, Validators} from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private modalService: NgbModal, private dataservice: DataService, private router: Router) {
-  }
-
   name: string;
   avatar: string;
   codemeli: string;
+
+  constructor(private modalService: NgbModal, private dataservice: DataService, private router: Router) {
+  }
 
   ngOnInit() {
     this.loadProfile();
@@ -33,18 +32,18 @@ export class ProfileComponent implements OnInit {
 
   updateProfilePic() {
     const modal = this.modalService.open(UploadAvatarComponent);
+    modal.
   }
 
   loadProfile() {
-    this.dataservice.getProfileDetail().subscribe((x) => {
-      console.log(x);
-      if (x.code === 200) {
-        this.name = x.data.name;
-        this.avatar = x.data.profile_pic;
-        this.codemeli = x.data.codemeli;
+    ProfileService.profileFunction = () => {
+      if (ProfileService.profileData.code === 200) {
+        this.name = ProfileService.profileData.data.name;
+        this.avatar = ProfileService.profileData.data.profile_pic;
+        this.codemeli = ProfileService.profileData.data.codemeli;
       } else {
         this.router.navigate(['home']);
       }
-    });
+    };
   }
 }

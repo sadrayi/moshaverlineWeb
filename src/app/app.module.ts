@@ -14,12 +14,12 @@ import {SearchComponent} from './search/search.component';
 import {HttpClientModule} from '@angular/common/http';
 import {LocalStorageService} from './services/local-storage.service';
 import {LoginComponent} from './login/login.component';
-import {NbCardModule, NbDialogModule, NbThemeModule} from '@nebular/theme';
-import {config} from 'rxjs';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ProfileComponent} from './profile/profile.component';
 import {DpDatePickerModule} from 'ng2-jalali-date-picker';
 import {UploadAvatarComponent} from './upload-avatar/upload-avatar.component';
+import {RouterModule} from '@angular/router';
+import {ProfileService} from './services/profile-service';
 
 @NgModule({
   declarations: [
@@ -39,13 +39,14 @@ import {UploadAvatarComponent} from './upload-avatar/upload-avatar.component';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserModule,
+    RouterModule,
     DpDatePickerModule,
     NgSelectModule,
     FormsModule,
     AppRoutingModule,
     NgbModule
   ],
-  providers: [LocalStorageService],
+  providers: [LocalStorageService, ProfileService],
   bootstrap: [AppComponent],
   entryComponents: [LoginComponent, UploadAvatarComponent]
 })

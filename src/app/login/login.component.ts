@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DataService} from '../shared/data.service';
 import {LocalStorageService} from '../services/local-storage.service';
 import {VerifyCode} from '../models/send/verify-code';
+import {ProfileService} from '../services/profile-service';
 
 @Component({
   selector: 'app-login',
@@ -22,16 +23,15 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataService.getProfileDetail().subscribe((x) => {
-      console.log(x);
-      if (x.code === 200) {
-        if (x.data.name === '') {
+    ProfileService.profileFunction = () => {
+      if (ProfileService.profileData.code === 200) {
+        if (ProfileService.profileData.data.name === '') {
           this.phoneState = false;
           this.headerText = 'لطفا اطلاعات کاربری خود را کامل نمایید.';
           this.inputText = 'نام و نام خانوادگی';
         }
       }
-    });
+    };
   }
 
   login() {

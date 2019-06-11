@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {NgSelectConfig} from '@ng-select/ng-select';
 import {DataService} from '../shared/data.service';
-import {CategoriesData, CategoriesModel} from '../models/responses/CategoriesModel';
+import {CategoriesData} from '../models/responses/CategoriesModel';
 import {Router} from '@angular/router';
 import {LocalStorageService} from '../services/local-storage.service';
 import {RequestAppointmentComponent} from '../request-appointment/request-appointment.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {LoginComponent} from '../login/login.component';
+import {ProfileService} from '../services/profile-service';
 
 interface Categories {
   id: number;
@@ -18,11 +20,12 @@ interface Categories {
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  profile: any;
   categoriesData: CategoriesData[] = [];
   categorieSelected: CategoriesData = null;
   categoriesLoading = false;
   doctorName = '';
+  poshtiban: Function;
 
   constructor(private modalService: NgbModal, private localStorageService: LocalStorageService, private dataService: DataService,
               private config: NgSelectConfig, private router: Router) {
@@ -30,14 +33,26 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    ProfileService.profileFunction = () => {
+      console.log(ProfileService.profileData)
+      console.log(ProfileService.profileData.code)
+      if (ProfileService.profileData.code !== 200) {
+        this.poshtiban = () => {
+          this.modalService.open(LoginComponent);
+        };
+      } else {
+        this.poshtiban = () => {
+          const modal = this.modalService.open(RequestAppointmentComponent);
+          modal.componentInstance.doctorName = 'انتخاب توسط پشتیبان';
+          modal.componentInstance.doctorId = -1;
+          modal.componentInstance.categoriesData = this.categoriesData;
+        };
+      }
+    };
     this.loadCategories();
   }
 
   poshtiban() {
-    const modal = this.modalService.open(RequestAppointmentComponent);
-    modal.componentInstance.doctorName = 'انتخاب توسط پشتیبان';
-    modal.componentInstance.doctorId = -1;
-    modal.componentInstance.categoriesData = this.categoriesData;
   }
 
   private search() {
