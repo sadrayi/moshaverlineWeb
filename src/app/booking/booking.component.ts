@@ -16,7 +16,7 @@ export class BookingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadAppointments();
+    this.loadAppointments(1);
     this.getAppointmentsCount();
   }
 
@@ -35,8 +35,8 @@ export class BookingComponent implements OnInit {
     return 'منتظر پرداخت' === state || 'منتظر انجام' === state;
   }
 
-  loadAppointments() {
-    console.log();
+  loadAppointments(page: number) {
+    this.page = page;
     this.dataService.getAppointments(this.page).subscribe((x) => {
       this.appointments = x.data;
       console.log(x.data);

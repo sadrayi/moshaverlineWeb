@@ -35,7 +35,7 @@
       </div>
 
       <!-- pagination -->
-      <app-paging [setPage]="pageCount" ></app-paging>
+      <app-paging [setPage]="pageCount" (pageChanged)="loadAppointments($event)"></app-paging>
       <!-- //pagination -->
 
     </div>
