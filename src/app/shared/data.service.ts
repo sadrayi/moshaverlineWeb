@@ -38,6 +38,14 @@ export class DataService {
     return this.http.get<DoctorsModel>(ApiUrl + 'doctorsSearch?page=' + page + '&categoryId=' + categoryId + '&doctorName=' + doctorName);
   }
 
+  getAppointments(page: number): Observable<GeneralResponse> {
+    return this.http.get<GeneralResponse>(ApiUrl + 'appointmentsWeb?page=' + page, this.httpOptions);
+  }
+
+  getAppointmentsCount(): Observable<any> {
+    return this.http.get<any>(ApiUrl + 'appointmentsCount', this.httpOptions);
+  }
+
   getDoctorDetail(doctorId: number): Observable<doctorsData> {
     return this.http.get<doctorsData>(ApiUrl + 'doctor?doctorId=' + doctorId);
   }

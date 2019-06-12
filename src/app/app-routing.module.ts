@@ -7,9 +7,11 @@ import {DoctorDetailComponent} from './doctor-detail/doctor-detail.component';
 import {RequestAppointmentComponent} from './request-appointment/request-appointment.component';
 import {SearchComponent} from './search/search.component';
 import {ProfileComponent} from './profile/profile.component';
+import {BookingComponent} from './booking/booking.component';
 
 const routes: Routes = [
   {path: 'home' , component: HomeComponent},
+  {path: 'booking' , component: BookingComponent},
   {path: 'list' , component: ListComponent},
   {path: 'profile' , component: ProfileComponent},
   {path: 'request' , component: RequestAppointmentComponent},

@@ -7,7 +7,7 @@ import {DataService} from '../shared/data.service';
   styleUrls: ['./upload-avatar.component.css']
 })
 export class UploadAvatarComponent implements OnInit {
-  @Output() image: any;
+  image: any;
 
   constructor(private dataService: DataService) {
   }

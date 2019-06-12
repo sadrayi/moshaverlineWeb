@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
   categorieSelected: CategoriesData = null;
   categoriesLoading = false;
   doctorName = '';
-  poshtiban: Function;
 
   constructor(private modalService: NgbModal, private localStorageService: LocalStorageService, private dataService: DataService,
               private config: NgSelectConfig, private router: Router) {

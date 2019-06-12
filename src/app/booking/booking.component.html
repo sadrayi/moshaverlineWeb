@@ -1,0 +1,44 @@
+<div class="content-wrapper" style="direction: rtl" dir="rtl">
+  <div class="container-fluid overflow-hidden">
+    <div class="row  margin-lr-10px sm-mrl-0px">
+      <!-- Page Title -->
+
+      <div id="page-title" style="padding-top: 60px;text-align: right" class=" gradient-white">
+        <div class="container" dir="rtl">
+
+          <h3 class="font-weight-300">لیست جلسات</h3>
+        </div>
+      </div>
+      <!-- // Page Title -->
+      <div class="row margin-top-45px full-width">
+
+        <!-- Booking item -->
+        <div *ngFor="let appointment of appointments" class="col-lg-4 margin-bottom-45px full-width" style="text-align: right">
+          <div class="background-white thum-hover box-shadow  full-width hvr-float">
+            <div class="padding-30px full-width">
+              <img src="assets/img/testimonial-2.png" class="float-right margin-right-20px border-radius-60 margin-bottom-20px" alt="">
+              <div class="margin-right-85px">
+                <a class="d-block text-dark text-medium margin-bottom-5px" >مشاور {{appointment.doctorName}} </a>
+                <div class="d-block padding-tb-5px">گروه مشاوره :  <a style="color: #59b899;" class="text-main-color">{{appointment.categoryName}}</a></div>
+                <div class="d-block padding-tb-5px">تاریخ :  <a style="color: #59b899;" class="text-main-color">{{unitToJalaliDate(appointment.startAt)}}</a></div>
+                <div class="d-block padding-tb-5px">ساعت :  <a style="color: #59b899;" class="text-main-color">{{unitToJalaliHour(appointment.startAt)}}</a></div>
+                <div class="d-block padding-tb-5px">وضعیت :  <a style="color: #59b899;" class="text-main-color">{{appointment.status|appointmentState:appointment.cost_status:appointment.startAt}}</a></div>
+                <div class="d-block padding-tb-5px">هزینه :  <a style="color: #59b899;" class="text-main-color">{{appointment.cost | currencyFormater}} </a></div>
+                <button *ngIf="(appointment.status|appointmentState:appointment.cost_status:appointment.startAt)==='منتظر پرداخت'" style="color: white" class="padding-5px d-inline-block text-grey-2 text-up-small ba-1 box-shadow border-radius-10"><i class="far fa-file-alt"></i> پرداخت </button>
+                <button *ngIf="cancelState(appointment.status|appointmentState:appointment.cost_status:appointment.startAt)" style="color: white" class="padding-5px d-inline-block text-grey-2 text-up-small cancel-button box-shadow border-radius-10"><i class="far fa-file-alt"></i> لغو </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- // Booking item -->
+
+      </div>
+
+      <!-- pagination -->
+      <app-paging [setPage]="pageCount" ></app-paging>
+      <!-- //pagination -->
+
+    </div>
+  </div>
+  <!-- /.container-fluid-->
+</div>

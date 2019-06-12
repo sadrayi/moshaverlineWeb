@@ -1,0 +1,15 @@
+
+<div *ngIf="lastPage!=1">
+  <ul style="float: right!important; direction: rtl" class="pagination pagination-md ">
+    <li *ngIf="currentPage!=1" class="page-item enabled background-main-color"><a class="page-link rounded-0"
+                                                                                  (click)="nextpage(currentPage-1)"
+                                                                                  tabindex="-1">قبلی</a>
+    </li>
+    <div *ngFor="let page of pager">
+      <li class="page-item "><a (click)="nextpage(page)" class="page-link"
+                                [ngClass]="{enabled:currentPage.toString()!=page}">{{page}}</a></li>
+    </div>
+    <li *ngIf="currentPage!=lastPage" class="page-item enabled"><a class="page-link rounded-0" (click)="nextpage(currentPage+1)">بعدی</a>
+    </li>
+  </ul>
+</div>

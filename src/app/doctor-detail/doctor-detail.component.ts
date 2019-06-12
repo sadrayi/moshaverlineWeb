@@ -41,7 +41,7 @@ export class DoctorDetailComponent implements OnInit {
       }
     };
     this.route.params.subscribe(params => {
-      this.doctorId = + params.id;
+      this.doctorId = +params.id;
     });
     console.log(this.doctorId);
     this.loadDoctorDetail();

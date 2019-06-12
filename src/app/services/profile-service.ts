@@ -3,7 +3,8 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class ProfileService {
   static profileData: any;
-  static profileFunction: any;
+  static profileFunction = () => {
+  };
 
   constructor() {
   }

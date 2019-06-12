@@ -32,7 +32,6 @@ export class ProfileComponent implements OnInit {
 
   updateProfilePic() {
     const modal = this.modalService.open(UploadAvatarComponent);
-    modal.
   }
 
   loadProfile() {
