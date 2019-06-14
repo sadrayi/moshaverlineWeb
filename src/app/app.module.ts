@@ -26,6 +26,9 @@ import {CurrencyFormaterPipe} from './pipes/currency-formater.pipe';
 import {AppointmentStatePipe} from './pipes/appointment-state.pipe';
 import {PagingComponent} from './paging/paging.component';
 import {AppointmentCancellComponent} from './appointment-cancell/appointment-cancell.component';
+import {ThemeModule} from './@theme/theme.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ChatComponent} from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,7 @@ import {AppointmentCancellComponent} from './appointment-cancell/appointment-can
     FooterComponent,
     SearchComponent,
     LoginComponent,
+    ChatComponent,
     ProfileComponent,
     UploadAvatarComponent,
     SideBarComponent,
@@ -50,9 +54,12 @@ import {AppointmentCancellComponent} from './appointment-cancell/appointment-can
   imports: [
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     BrowserModule,
     RouterModule,
     DpDatePickerModule,
+    NgbModule.forRoot(),
+    ThemeModule.forRoot(),
     NgSelectModule,
     FormsModule,
     AppRoutingModule,

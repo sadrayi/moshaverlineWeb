@@ -24,6 +24,7 @@
     "@nebular/theme": "^4.0.0",
     "@ng-bootstrap/ng-bootstrap": "^4.2.1",
     "@ng-select/ng-select": "^2.20.0",
+    "bootstrap": "^4.3.1",
     "moment-jalaali": "^0.8.3",
     "ng2-jalali-date-picker": "^2.2.7",
     "ngx-webstorage-service": "^4.0.1",

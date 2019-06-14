@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {Route, RouterModule, Routes} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {ListComponent} from './list/list.component';
 import {DoctorDetailComponent} from './doctor-detail/doctor-detail.component';
@@ -8,10 +7,12 @@ import {RequestAppointmentComponent} from './request-appointment/request-appoint
 import {SearchComponent} from './search/search.component';
 import {ProfileComponent} from './profile/profile.component';
 import {BookingComponent} from './booking/booking.component';
+import {ChatComponent} from './chat/chat.component';
 
 const routes: Routes = [
   {path: 'home' , component: HomeComponent},
   {path: 'booking' , component: BookingComponent},
+  {path: 'chat', component: ChatComponent},
   {path: 'list' , component: ListComponent},
   {path: 'profile' , component: ProfileComponent},
   {path: 'request' , component: RequestAppointmentComponent},
