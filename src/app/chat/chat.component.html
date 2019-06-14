@@ -1,7 +1,7 @@
-<nb-layout [center]="true" windowMode>
+<nb-layout [center]="true">
 
   <nb-layout-column class="main-content">
-    <div class="row">
+    <div class="row full-width">
       <nb-chat class="full-width" size="large" status="success" style="width: 100%" title="جلسه مشاوره">
         <nb-chat-message *ngFor="let msg of messages"
                          [avatar]="msg.user.avatar"

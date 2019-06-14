@@ -1,4 +1,4 @@
-export const messages = [
+export const messages = [/*
   {
     text: 'Hello, how are you? This should be a very long message so that we can test how it fit into the screen.',
     reply: false,
@@ -69,17 +69,5 @@ export const messages = [
       name: 'John Doe',
       avatar: '',
     },
-  },
-  {
-    text: 'Meet me there',
-    reply: false,
-    date: new Date(),
-    type: 'map',
-    latitude: 40.714728,
-    longitude: -73.998672,
-    user: {
-      name: 'John Doe',
-      avatar: '',
-    },
-  },
+  },*/
 ];

@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 
 import {ChatService} from './chat.service';
+import {ProfileService} from '../services/profile-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -12,8 +14,14 @@ export class ChatComponent {
 
   messages: any[];
 
-  constructor(protected chatService: ChatService) {
-    this.messages = this.chatService.loadMessages();
+  constructor(protected chatService: ChatService, private router: Router) {
+    ProfileService.profileFunction = () => {
+      if (!ProfileService.loaded) {
+        this.router.navigate(['/home']);
+      } else {
+        this.messages = this.chatService.loadMessages();
+      }
+    };
   }
 
   sendMessage(event: any) {
@@ -28,20 +36,14 @@ export class ChatComponent {
 
     this.messages.push({
       text: event.message,
-      date: new Date(),
+      date: new Date(parseInt(event.message)),
       reply: true,
       type: files.length ? 'file' : 'text',
       files: files,
       user: {
-        name: 'Jonh Doe',
+        name: ProfileService.profileData.data.name ? ProfileService.profileData.data.name : 'بدون نام',
         avatar: 'https://i.gifer.com/no.gif',
       },
     });
-    const botReply = this.chatService.reply(event.message);
-    if (botReply) {
-      setTimeout(() => {
-        this.messages.push(botReply);
-      }, 500);
-    }
   }
 }

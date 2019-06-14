@@ -2,40 +2,22 @@ import {ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {CapitalizePipe, EvaIconsPipe, NumberWithCommasPipe, PluralPipe, RoundPipe, TimingPipe,} from './pipes';
 
 import {
-  NbAccordionModule,
-  NbActionsModule,
-  NbAlertModule,
-  NbButtonModule,
-  NbCalendarKitModule,
-  NbCalendarModule,
-  NbCalendarRangeModule,
   NbCardModule,
   NbChatModule,
-  NbCheckboxModule,
-  NbContextMenuModule,
   NbDatepickerModule,
   NbDialogModule,
   NbInputModule,
   NbLayoutDirection,
   NbLayoutModule,
   NbListModule,
-  NbMenuModule,
   NbPopoverModule,
   NbProgressBarModule,
-  NbRadioModule,
-  NbRouteTabsetModule,
-  NbSearchModule,
-  NbSelectModule,
-  NbSidebarModule,
   NbSpinnerModule,
   NbStepperModule,
-  NbTabsetModule,
   NbThemeModule,
-  NbToastrModule,
-  NbTooltipModule,
-  NbUserModule,
   NbWindowModule,
 } from '@nebular/theme';
 
@@ -49,43 +31,30 @@ const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 const NB_MODULES = [
   NbCardModule,
   NbLayoutModule,
-  NbTabsetModule,
-  NbRouteTabsetModule,
-  NbMenuModule,
-  NbUserModule,
-  NbActionsModule,
-  NbSearchModule,
-  NbSidebarModule,
-  NbCheckboxModule,
   NbPopoverModule,
-  NbContextMenuModule,
   NgbModule,
   NbProgressBarModule,
-  NbCalendarModule,
-  NbCalendarRangeModule,
   NbStepperModule,
-  NbButtonModule,
   NbListModule,
-  NbToastrModule,
   NbInputModule,
-  NbAccordionModule,
   NbDatepickerModule,
   NbDialogModule,
   NbWindowModule,
-  NbAlertModule,
   NbSpinnerModule,
-  NbRadioModule,
-  NbSelectModule,
   NbChatModule,
-  NbTooltipModule,
-  NbCalendarKitModule,
 ];
 
 const COMPONENTS = [];
 
 const ENTRY_COMPONENTS = [];
 
-const PIPES = [];
+const PIPES = [
+  CapitalizePipe,
+  PluralPipe,
+  RoundPipe,
+  TimingPipe,
+  NumberWithCommasPipe,
+  EvaIconsPipe,];
 
 const NB_THEME_PROVIDERS = [
   ...NbThemeModule.forRoot(
@@ -96,12 +65,9 @@ const NB_THEME_PROVIDERS = [
     [],
     NbLayoutDirection.RTL
   ).providers,
-  ...NbSidebarModule.forRoot().providers,
-  ...NbMenuModule.forRoot().providers,
   ...NbDatepickerModule.forRoot().providers,
   ...NbDialogModule.forRoot().providers,
   ...NbWindowModule.forRoot().providers,
-  ...NbToastrModule.forRoot().providers,
   ...NbChatModule.forRoot({
     messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
   }).providers,

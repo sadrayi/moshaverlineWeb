@@ -1,2 +1,23 @@
 @import "~@ng-select/ng-select/themes/material.theme.css";
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+.nb-theme-corporate nb-chat.success-chat .header {
+  background-color: #0c523a !important;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-family: IRANSans !important;
+
+}
+
+.nb-theme-corporate nb-layout .layout {
+  font-family: IRANSans !important;
+}
+
+nb-chat.full-width.large-chat.success-chat {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.nb-theme-corporate nb-chat.success-chat nb-chat-form button.btn {
+  background-color: #0c523a !important;
+}
