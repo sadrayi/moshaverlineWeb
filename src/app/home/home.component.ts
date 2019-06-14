@@ -21,6 +21,7 @@ interface Categories {
 })
 export class HomeComponent implements OnInit {
   profile: any;
+  loggedin = false;
   categoriesData: CategoriesData[] = [];
   categorieSelected: CategoriesData = null;
   categoriesLoading = false;
@@ -33,25 +34,27 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     ProfileService.profileFunction = () => {
-      console.log(ProfileService.profileData)
-      console.log(ProfileService.profileData.code)
+      console.log(ProfileService.profileData);
+      console.log(ProfileService.profileData.code);
       if (ProfileService.profileData.code !== 200) {
-        this.poshtiban = () => {
-          this.modalService.open(LoginComponent);
-        };
+        this.loggedin = false;
       } else {
-        this.poshtiban = () => {
-          const modal = this.modalService.open(RequestAppointmentComponent);
-          modal.componentInstance.doctorName = 'انتخاب توسط پشتیبان';
-          modal.componentInstance.doctorId = -1;
-          modal.componentInstance.categoriesData = this.categoriesData;
-        };
+        this.loggedin = true;
       }
+
     };
     this.loadCategories();
   }
 
   poshtiban() {
+    const modal = this.modalService.open(RequestAppointmentComponent);
+    modal.componentInstance.doctorName = 'انتخاب توسط پشتیبان';
+    modal.componentInstance.doctorId = -1;
+    modal.componentInstance.categoriesData = this.categoriesData;
+  }
+
+  login() {
+    this.modalService.open(LoginComponent);
   }
 
   private search() {

@@ -37,15 +37,47 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-7">
-        <div class="row">
+      <div class="col-lg-8">
+        <div *ngIf="!loggedin" class="row">
           <div class="col-md-5 col-6 sm-mb-30px wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-            <a (click)="poshtiban()"  class="d-block border-radius-15 hvr-float hvr-sh2">
+            <a (click)="login()" class="d-block border-radius-15 hvr-float hvr-sh2" style="cursor: pointer">
+              <div class="background-main-color text-white border-radius-15 padding-20px text-center opacity-hover-7">
+                <div class="icon margin-bottom-15px opacity-7">
+                  <img alt="" src="./assets/img/icon/categorie-5.png">
+                </div>
+                انتخاب مشاور توسط پشتیبان
+              </div>
+            </a>
+          </div>
+        </div>
+        <div *ngIf="loggedin" class="row">
+          <div class="col-md-4 col-6 sm-mb-30px wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+            <a (click)="poshtiban()" class="d-block border-radius-15 hvr-float hvr-sh2" style="cursor: pointer">
               <div class="background-main-color text-white border-radius-15 padding-20px text-center opacity-hover-7">
                 <div class="icon margin-bottom-15px opacity-7">
                   <img src="./assets/img/icon/categorie-1.png" alt="">
                 </div>
                 انتخاب مشاور توسط پشتیبان
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4 col-6 sm-mb-30px wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+            <a [routerLink]="['/profile']" class="d-block border-radius-15 hvr-float hvr-sh2">
+              <div class="background-main-color text-white border-radius-15 padding-20px text-center opacity-hover-7">
+                <div class="icon margin-bottom-15px opacity-7">
+                  <img alt="" src="./assets/img/icon/categorie-5.png">
+                </div>
+                پروفایل کاربری
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4 col-6 sm-mb-30px wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+            <a [routerLink]="['/booking']" class="d-block border-radius-15 hvr-float hvr-sh2">
+              <div class="background-main-color text-white border-radius-15 padding-20px text-center opacity-hover-7">
+                <div class="icon margin-bottom-15px opacity-7">
+                  <img alt="" src="./assets/img/icon/categorie-6.png">
+                </div>
+                لیست جلسات مشاوره
               </div>
             </a>
           </div>
