@@ -50,12 +50,12 @@ export class DoctorDetailComponent implements OnInit {
   }
 
   open() {
-    if (!this.loggedIn)
+    if (!this.loggedIn) {
       this.modalService.open(LoginComponent);
-    else {
+    } else {
       const modal = this.modalService.open(RequestAppointmentComponent);
       modal.componentInstance.doctorName = this.doctorDetail.name;
-      modal.componentInstance.doctorId = this.doctorDetail._id;
+      modal.componentInstance.doctorId = this.doctorDetail.id;
     }
 
   }
@@ -97,8 +97,9 @@ export class DoctorDetailComponent implements OnInit {
   DateToJalaliHours(row: number) {
     if (this.calendarData[row].data.length > 0) {
       return moment(this.calendarData[row].data[0].startAt).format('HH:mm') + ' - ' + moment(this.calendarData[row].data[this.calendarData[row].data.length - 1].endAt).format('HH:mm');
-    } else
+    } else {
       return 'تعطیل';
+    }
   }
 
   loadDoctorDetail() {

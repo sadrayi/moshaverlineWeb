@@ -1,6 +1,6 @@
 export interface doctorsData {
   avatar: string;
-  _id: string;
+  id: string;
   name: string;
   star: number;
   information: informationScheme[]
@@ -8,7 +8,7 @@ export interface doctorsData {
 
 export interface informationScheme {
   text: string;
-  _id: string;
+  id: string;
   title: string;
 }
 

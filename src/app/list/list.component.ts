@@ -13,7 +13,7 @@ export class ListComponent implements OnInit {
   public doctorName: string;
   public categoryId: string;
   public doctorsCount: number;
-  public lastPage = 12;
+  public lastPage = 1;
   public pager: string[] = ['1'];
   public currentPage: number = 1;
   public doctors: doctorsData[];
@@ -43,7 +43,7 @@ export class ListComponent implements OnInit {
   private loadDoctors(page: number) {
     this.dataService.searchDoctorsCount(this.doctorName, this.categoryId).subscribe(x => {
       this.doctorsCount = x.count;
-      debugger
+
       this.lastPage = Math.ceil(this.doctorsCount / 12);
     });
     this.dataService.searchDoctors(this.doctorName, this.categoryId, page).subscribe(x => {

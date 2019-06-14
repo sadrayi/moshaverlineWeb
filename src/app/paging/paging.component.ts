@@ -21,8 +21,8 @@ export class PagingComponent implements OnInit {
   }
 
   public set setPage(lastPage: number) {
-    this.lastPage = lastPage;
-    debugger
+    this.lastPage = lastPage > 0 ? lastPage : 1;
+
     this.refreshPager();
   }
 
@@ -31,21 +31,23 @@ export class PagingComponent implements OnInit {
   }
 
   refreshPager() {
-    debugger
-    console.log(this.lastPage)
+
+    console.log(this.lastPage);
     let startpage = 0;
     if (this.pager.length > 1) {
-      if (this.currentPage > parseInt(this.pager[this.pager.length - 2]))
+      if (this.currentPage > parseInt(this.pager[this.pager.length - 2])) {
         startpage = this.currentPage - 6;
-      else if (this.currentPage < parseInt(this.pager[1]))
+      } else if (this.currentPage < parseInt(this.pager[1])) {
         startpage = this.currentPage;
+      }
     } else {
       startpage = 1;
     }
     if (startpage != 0) {
       this.pager = [];
-      if (startpage != 1)
+      if (startpage != 1) {
         this.pager.push('..');
+      }
       for (let i = startpage; i <= this.lastPage && i < 7 + startpage; i++) {
         this.pager.push(i.toString());
       }

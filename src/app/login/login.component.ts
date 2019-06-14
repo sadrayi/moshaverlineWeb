@@ -32,6 +32,9 @@ export class LoginComponent implements OnInit {
         }
       }
     };
+    if (ProfileService.loaded) {
+      ProfileService.profileFunction();
+    }
   }
 
   login() {

@@ -24,8 +24,16 @@
                 <div class="d-block padding-tb-5px">ساعت :  <a style="color: #59b899;" class="text-main-color">{{unitToJalaliHour(appointment.startAt)}}</a></div>
                 <div class="d-block padding-tb-5px">وضعیت :  <a style="color: #59b899;" class="text-main-color">{{appointment.status|appointmentState:appointment.cost_status:appointment.startAt}}</a></div>
                 <div class="d-block padding-tb-5px">هزینه :  <a style="color: #59b899;" class="text-main-color">{{appointment.cost | currencyFormater}} </a></div>
-                <button *ngIf="(appointment.status|appointmentState:appointment.cost_status:appointment.startAt)==='منتظر پرداخت'" style="color: white" class="padding-5px d-inline-block text-grey-2 text-up-small ba-1 box-shadow border-radius-10"><i class="far fa-file-alt"></i> پرداخت </button>
-                <button *ngIf="cancelState(appointment.status|appointmentState:appointment.cost_status:appointment.startAt)" style="color: white" class="padding-5px d-inline-block text-grey-2 text-up-small cancel-button box-shadow border-radius-10"><i class="far fa-file-alt"></i> لغو </button>
+                <button (click)="payAppoinment(appointment.id)"
+                        *ngIf="(appointment.status|appointmentState:appointment.cost_status:appointment.startAt)==='منتظر پرداخت'&&appointment.doctorName!='تخصیص داده نشده'"
+                        class="padding-5px d-inline-block text-grey-2 text-up-small ba-1 box-shadow border-radius-10"
+                        style="color: white"><i class="far fa-file-alt"></i> پرداخت
+                </button>
+                <button (click)="cancellAppointment(appointment.id)"
+                        *ngIf="cancelState(appointment.status|appointmentState:appointment.cost_status:appointment.startAt)"
+                        class="padding-5px d-inline-block text-grey-2 text-up-small cancel-button box-shadow border-radius-10"
+                        style="color: white"><i class="far fa-file-alt"></i> لغو
+                </button>
               </div>
             </div>
           </div>
@@ -35,7 +43,8 @@
       </div>
 
       <!-- pagination -->
-      <app-paging [setPage]="pageCount" (pageChanged)="loadAppointments($event)"></app-paging>
+      <app-paging (pageChanged)="loadAppointments
+      ($event)" [setPage]="pageCount"></app-paging>
       <!-- //pagination -->
 
     </div>

@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class ProfileService {
   static profileData: any;
+  static loaded = false;
   static profileFunction = () => {
   };
 
@@ -11,6 +12,7 @@ export class ProfileService {
 
   static setProfile(profileData: any) {
     this.profileData = profileData;
+    this.loaded = true;
     this.profileFunction();
   }
 

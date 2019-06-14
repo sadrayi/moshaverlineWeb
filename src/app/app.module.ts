@@ -20,11 +20,12 @@ import {DpDatePickerModule} from 'ng2-jalali-date-picker';
 import {UploadAvatarComponent} from './upload-avatar/upload-avatar.component';
 import {RouterModule} from '@angular/router';
 import {ProfileService} from './services/profile-service';
-import { SideBarComponent } from './side-bar/side-bar.component';
-import { BookingComponent } from './booking/booking.component';
-import { CurrencyFormaterPipe } from './pipes/currency-formater.pipe';
-import { AppointmentStatePipe } from './pipes/appointment-state.pipe';
-import { PagingComponent } from './paging/paging.component';
+import {SideBarComponent} from './side-bar/side-bar.component';
+import {BookingComponent} from './booking/booking.component';
+import {CurrencyFormaterPipe} from './pipes/currency-formater.pipe';
+import {AppointmentStatePipe} from './pipes/appointment-state.pipe';
+import {PagingComponent} from './paging/paging.component';
+import {AppointmentCancellComponent} from './appointment-cancell/appointment-cancell.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { PagingComponent } from './paging/paging.component';
     BookingComponent,
     CurrencyFormaterPipe,
     AppointmentStatePipe,
-    PagingComponent
+    PagingComponent,
+    AppointmentCancellComponent
   ],
   imports: [
     HttpClientModule,
@@ -56,9 +58,9 @@ import { PagingComponent } from './paging/paging.component';
     AppRoutingModule,
     NgbModule
   ],
-    providers: [LocalStorageService, ProfileService],
+  providers: [LocalStorageService, ProfileService],
   bootstrap: [AppComponent],
-  entryComponents: [LoginComponent, UploadAvatarComponent]
+  entryComponents: [LoginComponent, UploadAvatarComponent, AppointmentCancellComponent]
 })
 export class AppModule {
 }

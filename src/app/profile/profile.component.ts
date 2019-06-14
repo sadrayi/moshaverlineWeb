@@ -30,6 +30,10 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  booking() {
+    this.router.navigate(['booking']);
+  }
+
   updateProfilePic() {
     const modal = this.modalService.open(UploadAvatarComponent);
   }

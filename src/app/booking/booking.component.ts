@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../shared/data.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {AppointmentCancellComponent} from '../appointment-cancell/appointment-cancell.component';
 
 @Component({
   selector: 'app-booking',
@@ -9,10 +11,10 @@ import {DataService} from '../shared/data.service';
 export class BookingComponent implements OnInit {
   state = false;
   page = 1;
-  pageCount = 12;
+  pageCount = 1;
   appointments: any;
 
-  constructor(private dataService: DataService) {
+  constructor(private modalService: NgbModal, private dataService: DataService) {
   }
 
   ngOnInit() {
@@ -38,14 +40,23 @@ export class BookingComponent implements OnInit {
   loadAppointments(page: number) {
     this.page = page;
     this.dataService.getAppointments(this.page).subscribe((x) => {
+      console.log(x);
       this.appointments = x.data;
-      console.log(x.data);
     });
+  }
+
+  payAppoinment(id: number) {
+    window.location.href = 'http://admin.moshaverline.com/webservice/factor_pay?appointment_id=' + id;
+  }
+
+  cancellAppointment(id: number) {
+    let cancelModal = this.modalService.open(AppointmentCancellComponent);
+    cancelModal.componentInstance.id = id;
   }
 
   getAppointmentsCount() {
     this.dataService.getAppointmentsCount().subscribe((x) => {
-      //this.pageCount=Math.ceil(x.count/12);
+      this.pageCount = Math.ceil(x.count / 12);
     });
   }
 

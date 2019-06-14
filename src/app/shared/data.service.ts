@@ -58,8 +58,16 @@ export class DataService {
     return this.http.get<GeneralResponse>(ApiUrl + 'verifycode?type=user&&phone=' + phone);
   }
 
+  cancellAppointment(id: number): Observable<GeneralResponse> {
+    return this.http.delete<GeneralResponse>(ApiUrl + 'appointments?id=' + id, this.httpOptions);
+  }
+
   getProfileDetail(): Observable<GeneralResponse> {
     return this.http.get<GeneralResponse>(ApiUrl + 'profile', this.httpOptions);
+  }
+
+  payAppoinment(id: number): Observable<GeneralResponse> {
+    return this.http.get<GeneralResponse>(ApiUrl + 'factor_pay?appointment_id=' + id, this.httpOptions);
   }
 
   updateProfileName(name: string, codemeli: string, pic: string): Observable<GeneralResponse> {

@@ -25,10 +25,19 @@
     <div class="row">
       <div class="col-md-6 margin-bottom-20px">
         <label> <i class="fab fa-youtube margin-right-10px"></i> کد ملی</label>
-        <input type="text" class="form-control form-control-sm" [(ngModel)]="codemeli" name="codemeli" placeholder="کد ملی">
+        <input type="text" class="form-control form-control-sm" [(ngModel)]="codemeli" name="codemeli"
+               placeholder="کد ملی">
       </div>
     </div>
-    <a (click)="updateProfile()" class="btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">بروزرسانی</a>
-
+    <div class="row">
+      <a (click)="updateProfile()" style="cursor: pointer"
+         class="btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">بروزرسانی</a>
+    </div>
+    <br/>
+    <div class="row">
+      <a style="cursor: pointer" (click)="booking()"
+         class="btn btn-md padding-lr-25px  text-white background-main-color btn-inline-block">لیست
+        جلسات مشاوره</a>
+    </div>
   </div>
 </div>
