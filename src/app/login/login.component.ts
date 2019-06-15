@@ -11,6 +11,7 @@ import {ProfileService} from '../services/profile-service';
 })
 export class LoginComponent implements OnInit {
   phoneState = true;
+  errorMessage = '';
   codeState = false;
   inputState = true;
   inputText = 'شماره همراه';
@@ -25,11 +26,14 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     ProfileService.profileFunction = () => {
       if (ProfileService.profileData.code === 200) {
+        this.errorMessage = '';
         if (ProfileService.profileData.data.name === '') {
           this.phoneState = false;
           this.headerText = 'لطفا اطلاعات کاربری خود را کامل نمایید.';
           this.inputText = 'نام و نام خانوادگی';
         }
+      } else {
+        this.errorMessage = ProfileService.profileData.message;
       }
     };
     if (ProfileService.loaded) {
@@ -47,11 +51,13 @@ export class LoginComponent implements OnInit {
         this.input = '';
         this.dataService.getVeriyCode(this.phone).subscribe((x => {
           if (x.code === 200) {
+            this.errorMessage = '';
             this.inputState = true;
             this.codeState = true;
             this.inputText = 'کد تایید';
             this.headerText = 'کد تایید ارسال شده به شماره ' + this.phone + ' را وارد نمایید.';
           } else {
+            this.errorMessage = x.message;
             this.phoneState = true;
             this.inputState = true;
           }
@@ -62,6 +68,7 @@ export class LoginComponent implements OnInit {
         this.dataService.sendVerifyCode(new VerifyCode(this.phone, this.activeCode)).subscribe((x) => {
           console.log(x);
           if (x.code === 200) {
+            this.errorMessage = '';
             this.localStorage.saveUserId(x.data.id);
             this.localStorage.saveUserToken(x.data.token);
             if (x.data.name !== '') {
@@ -71,6 +78,8 @@ export class LoginComponent implements OnInit {
               this.headerText = 'لطفا اطلاعات کاربری خود را کامل نمایید.';
               this.inputText = 'نام و نام خانوادگی';
             }
+          }else {
+            this.errorMessage = x.message;
           }
         });
       } else {
@@ -78,8 +87,10 @@ export class LoginComponent implements OnInit {
         this.dataService.updateProfileName(this.input, '', null).subscribe((x) => {
           console.log(x);
           if (x.code === 200) {
+            this.errorMessage = '';
             window.location.reload();
           } else {
+            this.errorMessage = x.message;
             this.inputState = true;
           }
         });

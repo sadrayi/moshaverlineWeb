@@ -29,6 +29,10 @@ import {AppointmentCancellComponent} from './appointment-cancell/appointment-can
 import {ThemeModule} from './@theme/theme.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ChatComponent} from './chat/chat.component';
+import {environment} from '../environments/environment';
+import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
+
+const config: SocketIoConfig = {url: environment.ws_url, options: {}};
 
 @NgModule({
   declarations: [

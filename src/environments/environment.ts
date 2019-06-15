@@ -4,7 +4,8 @@
 
 export const environment = {
   production: true,
-  apiUrl: 'http://moshaverline.com/reservation'
+  apiUrl: 'http://moshaverline.com/reservation',
+  ws_url: 'http://148.251.163.77:8080/',
 };
 
 /*

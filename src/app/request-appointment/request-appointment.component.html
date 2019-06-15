@@ -50,8 +50,13 @@
             </dp-date-picker>
           </div>
         </div>
+
+
       </div>
     </form>
+    <div class="row ">
+      <p class="bold" style="color: red;text-align: center;width: 100%" *ngIf="errorMessage!==''">خطا : {{errorMessage}}</p>
+    </div>
   </div>
 </div>
 <div class="modal-footer">

@@ -13,10 +13,12 @@ import {Router} from '@angular/router';
 export class RequestAppointmentComponent implements OnInit {
   @Input() categoriesData: CategoriesData[] = [];
   dateObject: any;
+  errorMessage = '';
   categorieSelected: CategoriesData = null;
   categoriesLoading = false;
   @Input() doctorName: string;
   @Input() doctorId: number;
+  loading = false;
 
   constructor(private dataService: DataService, private router: Router) {
   }
@@ -29,18 +31,26 @@ export class RequestAppointmentComponent implements OnInit {
   }
 
   saveRequest() {
-    const appointment = new AppointmentRequest(this.doctorId.toString(), this.categorieSelected._id.toString(), this.dateObject.unix() * 1000, '');
-    console.log(appointment);
-    this.dataService.sendAppointmentRequest(appointment).subscribe((x) => {
-      console.log(x);
-      if (x.code == 200) {
-        if (this.doctorId != -1) {
-          window.location.href = 'http://admin.moshaverline.com/webservice/factor_pay?appointment_id=' + x.data;
+    this.loading = true;
+    if (this.categorieSelected == null) {
+      this.errorMessage = 'گروه مشاوره را انتخاب کنید.';
+    } else {
+      const appointment = new AppointmentRequest(this.doctorId.toString(), this.categorieSelected._id.toString(), this.dateObject.unix() * 1000, '');
+      console.log(appointment);
+      this.dataService.sendAppointmentRequest(appointment).subscribe((x) => {
+        console.log(x);
+        this.loading = false;
+        if (x.code == 200) {
+          if (this.doctorId != -1) {
+            window.location.href = 'http://admin.moshaverline.com/webservice/factor_pay?appointment_id=' + x.data;
+          } else {
+            this.router.navigate(['booking']);
+          }
         } else {
-          this.router.navigate(['booking']);
+          this.errorMessage = x.message;
         }
-      }
-    });
+      });
+    }
   }
 
   private loadCategories() {

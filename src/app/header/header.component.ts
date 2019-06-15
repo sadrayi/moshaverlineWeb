@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from '../shared/data.service';
 import {Router} from '@angular/router';
 import {LoginComponent} from '../login/login.component';
@@ -28,6 +28,8 @@ export class HeaderComponent implements OnInit {
         this.loggedIn = true;
         if (x.data.name !== '') {
           this.name = x.data.name;
+          if (x.data.inAppointment)
+            this.router.navigate(['/chat']);
         } else {
           this.modalService.open(LoginComponent);
         }
