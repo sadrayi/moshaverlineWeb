@@ -10,12 +10,31 @@
 --------------------------------------------------------------------------------------
 فونت های ایران سن سریف یک نرم افزار مالکیتی محسوب می شود. جهت آگاهی از قوانین استفاده از این فونت ها لطفا به وب سایت (فونت ایران دات کام) مراجعه نمایید
 --------------------------------------------------------------------------------------
-IRAN Sans-serif fonts are considered a proprietary software. To gain information about the laws regarding the use of these fonts, please visit www.fontiran.com 
+IRAN Sans-serif fonts are considered a proprietary software. To gain information about the laws regarding the use of these fonts, please visit www.fontiran.com
 --------------------------------------------------------------------------------------
 This set of fonts are used in this project under the license: (.....)
 --------------------------------------------------------------------------------------
-*	
+*
 **/
+
+
+@font-face {
+  font-family: 'BYekan';
+  src: url('BYekan-webfont.eot');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BYekan';
+  src: url('../fonts/BYekan-webfont.eot') format('eot'),
+  url('../fonts/BYekan-webfont.woff') format('woff'),
+  url('../fonts/BYekan-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 @font-face {
 	font-family: IRANSans;
 	font-style: normal;
